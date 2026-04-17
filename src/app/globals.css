@@ -1,26 +1,155 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
+/* next/font injects --font-dm-sans and --font-brico on body */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-brico), ui-sans-serif, system-ui, sans-serif;
+  --color-canvas: #ebe8e1;
+  --color-bento: #fffdf8;
+  --color-bento-dark: #141211;
+  --color-ink: #171412;
+  --color-muted-ink: #5c5854;
+  --color-accent: #c8102e;
+  --color-accent-hover: #a30d24;
+  --color-accent-soft: #fde8eb;
+  --color-forest: #0f5c4b;
+  --color-forest-soft: #e0f2ee;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.font-display {
+  font-family: var(--font-brico), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+.dark body {
+  background-color: var(--color-bento-dark);
+  color: #f4f0ea;
+}
+
+/* Subtle graph-paper vibe — no gradients */
+.canvas-pattern {
+  background-color: var(--color-canvas);
+  background-image: radial-gradient(
+      circle at 1px 1px,
+      rgb(200 16 46 / 0.07) 1px,
+      transparent 0
+    ),
+    linear-gradient(
+      rgb(24 24 27 / 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgb(24 24 27 / 0.04) 1px,
+      transparent 1px
+    );
+  background-size:
+    24px 24px,
+    32px 32px,
+    32px 32px;
+}
+
+.dark .canvas-pattern {
+  background-color: var(--color-bento-dark);
+  background-image: radial-gradient(
+      circle at 1px 1px,
+      rgb(248 113 113 / 0.06) 1px,
+      transparent 0
+    ),
+    linear-gradient(
+      rgb(250 250 250 / 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgb(250 250 250 / 0.04) 1px,
+      transparent 1px
+    );
+  background-size:
+    24px 24px,
+    32px 32px,
+    32px 32px;
+}
+
+/* Bento “box” — hard offset shadow; slight tilt, straightens on hover (all cards) */
+.bento {
+  border-radius: 1.25rem;
+  border-width: 2px;
+  border-color: rgb(24 24 27 / 0.92);
+  background-color: var(--color-bento);
+  box-shadow: 6px 6px 0 0 rgb(24 24 27);
+  transform: rotate(-0.35deg);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.dark .bento {
+  border-color: rgb(244 240 234 / 0.85);
+  background-color: #1c1917;
+  box-shadow: 6px 6px 0 0 rgb(244 240 234 / 0.35);
+}
+
+@media (min-width: 1024px) {
+  .bento:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 8px 8px 0 0 rgb(24 24 27);
+  }
+
+  .dark .bento:hover {
+    box-shadow: 8px 8px 0 0 rgb(244 240 234 / 0.45);
+  }
+}
+
+/*
+ * Modals / dialogs: skip the playful tilt. A rotated box + border-radius + 2px
+ * border often draws a broken / missing stroke at the top corners (subpixels).
+ */
+.bento.bento--flat {
+  transform: none;
+}
+
+@media (min-width: 1024px) {
+  .bento.bento--flat:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 0 0 rgb(24 24 27);
+  }
+
+  .dark .bento.bento--flat:hover {
+    box-shadow: 8px 8px 0 0 rgb(244 240 234 / 0.45);
+  }
+}
+
+@layer components {
+  .input-bento {
+    height: 2.75rem;
+    width: 100%;
+    border-radius: 0.75rem;
+    border-width: 2px;
+    border-color: rgb(24 24 27 / 0.92);
+    background-color: white;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    box-shadow: 3px 3px 0 0 rgb(24 24 27);
+  }
+  .dark .input-bento {
+    border-color: rgb(244 240 234 / 0.55);
+    background-color: rgb(12 10 9);
+    color: #f4f0ea;
+    box-shadow: 3px 3px 0 0 rgb(244 240 234 / 0.3);
+  }
+  .input-bento:focus {
+    outline: 2px solid transparent;
+    border-color: var(--color-accent);
+  }
 }
