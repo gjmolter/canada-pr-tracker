@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
@@ -112,6 +113,11 @@ export default function RootLayout({
     <html lang="en-CA" suppressHydrationWarning>
       <body className={`${dmSans.variable} ${bricolage.variable} canvas-pattern min-h-screen antialiased`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <Script
+          src="https://nosy.cpbr.digital/script.js"
+          strategy="afterInteractive"
+          data-website-id="5f92287a-5f6e-4181-b39d-1f1597bc9a8d"
+        />
         <Providers>{children}</Providers>
       </body>
     </html>
