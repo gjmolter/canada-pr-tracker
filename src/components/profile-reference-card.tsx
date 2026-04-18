@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { UserRound } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTracker } from "@/context/tracker-context";
@@ -11,20 +11,23 @@ interface ProfileReferenceCardProps {
   onAsOfIsoChange: (iso: string) => void;
 }
 
-function FieldLabel({ children }: { children: ReactNode }) {
+function FieldLabel({ htmlFor, children }: { htmlFor: string; children: ReactNode }) {
   return (
-    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--color-muted-ink)] dark:text-stone-400">
+    <label
+      htmlFor={htmlFor}
+      className="text-[11px] font-bold uppercase tracking-[0.16em] text-(--color-muted-ink) dark:text-stone-400"
+    >
       {children}
-    </p>
+    </label>
   );
 }
 
-export function ProfileReferenceCard({
-  asOfIso,
-  onAsOfIsoChange,
-}: ProfileReferenceCardProps) {
+export function ProfileReferenceCard({ asOfIso, onAsOfIsoChange }: ProfileReferenceCardProps) {
   const { state, setProfile } = useTracker();
   const { profile } = state;
+  const referenceFieldId = useId();
+  const arrivalFieldId = useId();
+  const prGrantedFieldId = useId();
 
   const [refDate, setRefDate] = useState(asOfIso);
   const [arrival, setArrival] = useState(profile.arrivalDate);
@@ -45,17 +48,14 @@ export function ProfileReferenceCard({
 
   const commitProfile = () => {
     const nextPr = prDate ? prDate : null;
-    if (
-      arrival !== profile.arrivalDate ||
-      nextPr !== profile.prDate
-    ) {
+    if (arrival !== profile.arrivalDate || nextPr !== profile.prDate) {
       setProfile({ arrivalDate: arrival, prDate: nextPr });
     }
   };
 
   return (
     <Card className="bento--tilt flex h-full flex-col overflow-hidden">
-      <div className="border-b-2 border-[color:var(--color-ink)] bg-[var(--color-accent)] px-5 py-4 text-white sm:px-6">
+      <div className="border-b-2 border-(--color-ink) bg-(--color-accent) px-5 py-4 text-white sm:px-6">
         <div className="flex items-center gap-2 font-display text-2xl font-bold tracking-tight">
           <UserRound className="h-6 w-6 shrink-0 opacity-95" aria-hidden />
           Getting started
@@ -67,23 +67,24 @@ export function ProfileReferenceCard({
 
       <CardContent className="flex flex-1 flex-col gap-6 p-5 sm:p-6">
         <div className="space-y-2">
-          <FieldLabel>Reference date (as of)</FieldLabel>
+          <FieldLabel htmlFor={referenceFieldId}>Reference date (as of)</FieldLabel>
           <input
+            id={referenceFieldId}
             type="date"
             className="input-bento w-full"
             value={refDate}
             onChange={(e) => setRefDate(e.target.value)}
             onBlur={commitReference}
           />
-          <p className="text-xs font-medium leading-snug text-[var(--color-muted-ink)] dark:text-stone-500">
-            We treat this day as &ldquo;today&rdquo; for PR and
-            citizenship math, handy for future trips.
+          <p className="text-xs font-medium leading-snug text-(--color-muted-ink) dark:text-stone-500">
+            We treat this day as &ldquo;today&rdquo; for PR and citizenship math, handy for future trips.
           </p>
         </div>
 
         <div className="space-y-2">
-          <FieldLabel>First arrival in Canada</FieldLabel>
+          <FieldLabel htmlFor={arrivalFieldId}>First arrival in Canada</FieldLabel>
           <input
+            id={arrivalFieldId}
             type="date"
             className="input-bento w-full"
             value={arrival}
@@ -91,14 +92,15 @@ export function ProfileReferenceCard({
             onBlur={commitProfile}
             required
           />
-          <p className="text-xs font-medium leading-snug text-[var(--color-muted-ink)] dark:text-stone-500">
+          <p className="text-xs font-medium leading-snug text-(--color-muted-ink) dark:text-stone-500">
             When you first touched Canadian soil.
           </p>
         </div>
 
         <div className="space-y-2">
-          <FieldLabel>PR granted</FieldLabel>
+          <FieldLabel htmlFor={prGrantedFieldId}>PR granted</FieldLabel>
           <input
+            id={prGrantedFieldId}
             type="date"
             className="input-bento w-full"
             value={prDate}
@@ -106,7 +108,7 @@ export function ProfileReferenceCard({
             onBlur={commitProfile}
             required
           />
-          <p className="text-xs font-medium leading-snug text-[var(--color-muted-ink)] dark:text-stone-500">
+          <p className="text-xs font-medium leading-snug text-(--color-muted-ink) dark:text-stone-500">
             The day you got your PR card.
           </p>
         </div>

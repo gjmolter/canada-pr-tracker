@@ -20,12 +20,7 @@ const defaultForm = {
   abroadPrTreatment: "none" as AbroadPrTreatment,
 };
 
-export function TravelModal({
-  open,
-  onClose,
-  initial,
-  onSave,
-}: TravelModalProps) {
+export function TravelModal({ open, onClose, initial, onSave }: TravelModalProps) {
   const [form, setForm] = useState(defaultForm);
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
@@ -52,8 +47,8 @@ export function TravelModal({
     const getFocusable = () =>
       Array.from(
         dialog.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        )
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        ),
       ).filter((el) => !el.hasAttribute("disabled"));
 
     const focusables = getFocusable();
@@ -89,14 +84,11 @@ export function TravelModal({
 
   if (!open) return null;
 
-  const valid =
-    form.departureDate &&
-    form.returnDate &&
-    isChronologicallyValid(form.departureDate, form.returnDate);
+  const valid = form.departureDate && form.returnDate && isChronologicallyValid(form.departureDate, form.returnDate);
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-[color:var(--color-ink)]/50 p-3 sm:items-center sm:p-6"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-ink/50 p-3 sm:items-center sm:p-6"
       role="presentation"
       onClick={onClose}
     >
@@ -106,10 +98,10 @@ export function TravelModal({
         aria-modal="true"
         aria-labelledby="travel-modal-title"
         tabIndex={-1}
-        className="w-full max-w-lg overflow-hidden rounded-[1.25rem] border-2 border-[color:var(--color-ink)] bg-[var(--color-bento)] shadow-[8px_8px_0_0_var(--color-ink)] dark:border-stone-200 dark:bg-[#1c1917] dark:shadow-[8px_8px_0_0_rgb(244_240_234/0.35)]"
+        className="w-full max-w-lg overflow-hidden rounded-[1.25rem] border-2 border-(--color-ink) bg-(--color-bento) shadow-[8px_8px_0_0_var(--color-ink)] dark:border-stone-200 dark:bg-[#1c1917] dark:shadow-[8px_8px_0_0_rgb(244_240_234/0.35)]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b-2 border-[color:var(--color-ink)] bg-[var(--color-accent)] px-4 py-3 text-white sm:px-5">
+        <div className="flex items-center justify-between border-b-2 border-(--color-ink) bg-(--color-accent) px-4 py-3 text-white sm:px-5">
           <div className="flex items-center gap-2">
             <MapPin className="h-5 w-5 shrink-0" />
             <h2 id="travel-modal-title" className="font-display text-lg font-bold">
@@ -119,7 +111,7 @@ export function TravelModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border-2 border-white/40 p-1.5 text-white transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/90 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-accent)]"
+            className="rounded-lg border-2 border-white/40 p-1.5 text-white transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/90 focus-visible:ring-offset-2 focus-visible:ring-offset-(--color-accent)"
             aria-label="Close"
           >
             <X className="h-5 w-5" />
@@ -139,38 +131,32 @@ export function TravelModal({
           }}
         >
           <div className="grid gap-4 sm:grid-cols-2">
-            <label className="flex flex-col gap-1.5 text-sm font-semibold text-[var(--color-ink)] dark:text-stone-200">
+            <label className="flex flex-col gap-1.5 text-sm font-semibold text-(--color-ink) dark:text-stone-200">
               Leave Canada
               <input
                 type="date"
                 className="input-bento"
                 value={form.departureDate}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, departureDate: e.target.value }))
-                }
+                onChange={(e) => setForm((f) => ({ ...f, departureDate: e.target.value }))}
                 required
               />
             </label>
-            <label className="flex flex-col gap-1.5 text-sm font-semibold text-[var(--color-ink)] dark:text-stone-200">
+            <label className="flex flex-col gap-1.5 text-sm font-semibold text-(--color-ink) dark:text-stone-200">
               Back in Canada
               <input
                 type="date"
                 className="input-bento"
                 value={form.returnDate}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, returnDate: e.target.value }))
-                }
+                onChange={(e) => setForm((f) => ({ ...f, returnDate: e.target.value }))}
                 required
               />
             </label>
           </div>
-          <p className="text-xs font-medium leading-relaxed text-[var(--color-muted-ink)] dark:text-stone-400">
-            Leave and return days count as in Canada; only full days between
-            them count as abroad. That&apos;s the same absence rule IRCC uses for
-            citizenship
-            physical presence (calculator / CIT 0407).
+          <p className="text-xs font-medium leading-relaxed text-(--color-muted-ink) dark:text-stone-400">
+            Leave and return days count as in Canada; only full days between them count as abroad. That&apos;s the same
+            absence rule IRCC uses for citizenship physical presence (calculator / CIT 0407).
           </p>
-          <label className="flex flex-col gap-1.5 text-sm font-semibold text-[var(--color-ink)] dark:text-stone-200">
+          <label className="flex flex-col gap-1.5 text-sm font-semibold text-(--color-ink) dark:text-stone-200">
             Abroad flavour (for PR / citizenship math)
             <select
               className="input-bento"
@@ -188,14 +174,11 @@ export function TravelModal({
                 </option>
               ))}
             </select>
-            <span className="text-xs font-medium normal-case text-[var(--color-muted-ink)] dark:text-stone-400">
-              {
-                ABROAD_OPTIONS.find((o) => o.value === form.abroadPrTreatment)
-                  ?.hint
-              }
+            <span className="text-xs font-medium normal-case text-(--color-muted-ink) dark:text-stone-400">
+              {ABROAD_OPTIONS.find((o) => o.value === form.abroadPrTreatment)?.hint}
             </span>
           </label>
-          <div className="flex justify-end gap-2 border-t-2 border-dashed border-[color:var(--color-ink)]/15 pt-4 dark:border-stone-600/40">
+          <div className="flex justify-end gap-2 border-t-2 border-dashed border-ink/15 pt-4 dark:border-stone-600/40">
             <Button type="button" variant="outline" onClick={onClose}>
               Never mind
             </Button>

@@ -2,13 +2,7 @@
 
 import { useRef } from "react";
 import { Download, HardDrive, Trash2, Upload } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useTracker } from "@/context/tracker-context";
 import { parseBackup, serializeBackup } from "@/lib/storage";
@@ -21,12 +15,12 @@ export function BackupControls() {
     <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-xl">
-          <HardDrive className="h-6 w-6 text-[var(--color-forest)]" />
+          <HardDrive className="h-6 w-6 text-(--color-forest)" />
           Stash a copy
         </CardTitle>
         <CardDescription>
-          Your data never leaves your machine unless you download it. Keep a JSON
-          somewhere boring and safe (email to yourself counts).
+          Your data never leaves your machine unless you download it. Keep a JSON somewhere boring and safe (email to
+          yourself counts).
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-6 pt-5">
@@ -49,11 +43,7 @@ export function BackupControls() {
             <Download className="h-4 w-4" />
             Download JSON
           </Button>
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => inputRef.current?.click()}
-          >
+          <Button type="button" variant="outline" onClick={() => inputRef.current?.click()}>
             <Upload className="h-4 w-4" />
             Import JSON
           </Button>
@@ -74,9 +64,7 @@ export function BackupControls() {
                   return;
                 }
                 if (
-                  window.confirm(
-                    "Replace what you have now with this backup? Trips vanish if they’re not in the file."
-                  )
+                  window.confirm("Replace what you have now with this backup? Trips vanish if they’re not in the file.")
                 ) {
                   replaceState(parsed);
                 }
@@ -87,13 +75,12 @@ export function BackupControls() {
           />
         </div>
 
-        <div className="border-t-2 border-dashed border-[color:var(--color-ink)]/15 pt-2 dark:border-stone-600/40">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--color-muted-ink)] dark:text-stone-400">
+        <div className="border-t-2 border-dashed border-ink/15 pt-2 dark:border-stone-600/40">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-(--color-muted-ink) dark:text-stone-400">
             Danger zone
           </p>
-          <p className="mb-3 text-xs font-medium leading-relaxed text-[var(--color-muted-ink)] dark:text-stone-500">
-            Clear everything stored in this browser: Profile, trips, the lot.
-            There is no undo.
+          <p className="mb-3 text-xs font-medium leading-relaxed text-(--color-muted-ink) dark:text-stone-500">
+            Clear everything stored in this browser: Profile, trips, the lot. There is no undo.
           </p>
           <Button
             type="button"
@@ -101,9 +88,7 @@ export function BackupControls() {
             onClick={() => {
               if (
                 typeof window !== "undefined" &&
-                window.confirm(
-                  "Nuke everything stored in this browser? There is no undoing this."
-                )
+                window.confirm("Nuke everything stored in this browser? There is no undoing this.")
               ) {
                 clearAll();
               }

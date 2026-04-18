@@ -15,10 +15,7 @@ function isoValid(s: string): boolean {
   return isValid(parseISO(s));
 }
 
-export function runIntegrityChecks(
-  profile: TrackerProfile,
-  trips: Trip[]
-): IntegrityMessage[] {
+export function runIntegrityChecks(profile: TrackerProfile, trips: Trip[]): IntegrityMessage[] {
   const msgs: IntegrityMessage[] = [];
   const arrival = parseDate(profile.arrivalDate);
   const pr = profile.prDate ? parseDate(profile.prDate) : null;
@@ -36,14 +33,6 @@ export function runIntegrityChecks(
       id: "pr-invalid",
       severity: "error",
       message: "PR date is not a valid calendar date.",
-    });
-  }
-
-  if (arrival && pr && isBefore(pr, arrival)) {
-    msgs.push({
-      id: "pr-before-arrival",
-      severity: "warning",
-      message: "PR date is before your recorded arrival in Canada.",
     });
   }
 
@@ -83,8 +72,7 @@ export function runIntegrityChecks(
       const bDep = parseDate(b.departureDate);
       const bRet = parseDate(b.returnDate);
       if (!aDep || !aRet || !bDep || !bRet) continue;
-      const overlap =
-        !(isBefore(aRet, bDep) || isBefore(bRet, aDep));
+      const overlap = !(isBefore(aRet, bDep) || isBefore(bRet, aDep));
       if (overlap) {
         msgs.push({
           id: `overlap-${a.id}-${b.id}`,

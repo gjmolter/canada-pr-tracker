@@ -15,10 +15,56 @@ const bricolage = Bricolage_Grotesque({
   weight: ["400", "500", "600", "700"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://canada-pr-tracker.gabrielmolter.com";
+
+const defaultTitle = "Canada PR & Citizenship Days Tracker";
+
+const defaultDescription =
+  "Free Canada Permanent Residency (PR) and Citizenship physical presence days calculator: Trip log, and IRCC-style absence counting. No account needed, your data stays in your browser.";
+
 export const metadata: Metadata = {
-  title: "Permanent Residency Tracker",
-  description:
-    "Private permanent residency and citizenship presence planner with rolling five-year windows.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: defaultTitle,
+    template: "%s | Canada PR & Citizenship Days Tracker",
+  },
+  description: defaultDescription,
+  keywords: [
+    "Canada PR days calculator",
+    "permanent residency 730 days",
+    "citizenship 1095 days",
+    "physical presence calculator",
+    "Canada residency tracker",
+    "rolling five year window",
+    "IRCC physical presence",
+    "PR card maintenance",
+    "Canadian citizenship application",
+    "days in Canada calculator",
+    "absence days Canada",
+  ],
+  authors: [{ name: "Gabriel Molter", url: "https://gabrielmolter.com" }],
+  creator: "Gabriel Molter",
+  publisher: "Gabriel Molter",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    url: "/",
+    siteName: "Canada PR & Citizenship Days Tracker",
+    title: defaultTitle,
+    description: defaultDescription,
+  },
+  twitter: {
+    card: "summary",
+    title: defaultTitle,
+    description: defaultDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: [
       {
@@ -28,16 +74,34 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Canada PR & Citizenship Days Tracker",
+  alternateName: "Canada Days Tracker",
+  url: `${siteUrl}/`,
+  description: defaultDescription,
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Web",
+  browserRequirements: "Requires JavaScript. Data stored locally in the browser.",
+  author: {
+    "@type": "Person",
+    name: "Gabriel Molter",
+    url: "https://gabrielmolter.com",
+  },
+  inLanguage: "en-CA",
+  isAccessibleForFree: true,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${dmSans.variable} ${bricolage.variable} canvas-pattern min-h-screen antialiased`}
-      >
+    <html lang="en-CA" suppressHydrationWarning>
+      <body className={`${dmSans.variable} ${bricolage.variable} canvas-pattern min-h-screen antialiased`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Providers>{children}</Providers>
       </body>
     </html>
