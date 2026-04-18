@@ -17,10 +17,10 @@ const bricolage = Bricolage_Grotesque({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://canada-pr-tracker.gabrielmolter.com";
 
-const defaultTitle = "Canada PR & Citizenship Days Tracker";
+const defaultTitle = "Canada PR Maintenance & Citizenship Eligibility Days Tracker";
 
 const defaultDescription =
-  "Free Canada Permanent Residency (PR) and Citizenship physical presence days calculator: Trip log, and IRCC-style absence counting. No account needed, your data stays in your browser.";
+  "Calculate Canada PR and Citizenship physical presence: Trip log & IRCC-style absence rules. Free & Private: no account needed.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -55,11 +55,20 @@ export const metadata: Metadata = {
     siteName: "Canada PR & Citizenship Days Tracker",
     title: defaultTitle,
     description: defaultDescription,
+    images: [
+      {
+        url: "/flag.png",
+        width: 3840,
+        height: 1920,
+        alt: "National flag of Canada",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: defaultTitle,
     description: defaultDescription,
+    images: ["/flag.png"],
   },
   robots: {
     index: true,
@@ -80,6 +89,7 @@ const jsonLd = {
   name: "Canada PR & Citizenship Days Tracker",
   alternateName: "Canada Days Tracker",
   url: `${siteUrl}/`,
+  image: `${siteUrl}/flag.png`,
   description: defaultDescription,
   applicationCategory: "UtilitiesApplication",
   operatingSystem: "Web",
