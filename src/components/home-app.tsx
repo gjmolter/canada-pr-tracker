@@ -153,9 +153,8 @@ export function HomeApp() {
                 <span className="font-display font-semibold text-(--color-ink) dark:text-stone-300">
                   What we don&apos;t do.
                 </span>{" "}
-                This is a private planning sketch, not IRCC. We don&apos;t handle every edge case (humanitarian pause,
-                status changes mid-day, etc.). Use official sources or a licensed representative for decisions that
-                matter.
+                This is a private planning sketch, not IRCC. We don&apos;t handle every edge case. Use official sources
+                or a licensed representative for decisions that matter.
               </p>
             </div>
           </div>
@@ -299,7 +298,7 @@ export function HomeApp() {
           </div>
 
           <p className="col-span-12 text-center text-xs font-medium leading-relaxed text-(--color-muted-ink) dark:text-stone-500">
-            Not legal advice. IRCC has the final word. Obviously.
+            Not legal advice. IRCC has the final word, obviously.
           </p>
         </div>
       </main>
