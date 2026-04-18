@@ -62,14 +62,17 @@ export function HowItWorksModal({ open, onClose }: HowItWorksModalProps) {
   return (
     <div
       className="fixed inset-0 z-[60] flex items-end justify-center bg-[color:var(--color-ink)]/55 p-3 sm:items-center sm:p-6"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="how-it-works-title"
+      role="presentation"
+      onClick={onClose}
     >
       <div
         ref={dialogRef}
-        className="bento bento--flat max-h-[min(90vh,42rem)] w-full max-w-2xl overflow-hidden border-[color:var(--color-ink)] shadow-[8px_8px_0_0_var(--color-ink)] dark:shadow-[8px_8px_0_0_rgb(244_240_234/0.35)]"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="how-it-works-title"
         tabIndex={-1}
+        className="max-h-[min(92vh,46rem)] w-full max-w-2xl overflow-hidden rounded-[1.25rem] border-2 border-[color:var(--color-ink)] bg-[var(--color-bento)] shadow-[8px_8px_0_0_var(--color-ink)] dark:border-stone-200 dark:bg-[#1c1917] dark:shadow-[8px_8px_0_0_rgb(244_240_234/0.35)]"
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b-2 border-[color:var(--color-ink)] bg-[var(--color-accent)] px-4 py-3 text-white sm:px-5">
           <h2 id="how-it-works-title" className="font-display text-lg font-bold">
@@ -84,7 +87,7 @@ export function HowItWorksModal({ open, onClose }: HowItWorksModalProps) {
             <X className="h-5 w-5" />
           </button>
         </div>
-        <div className="max-h-[calc(min(90vh,42rem)-3.5rem)] space-y-4 overflow-y-auto p-4 text-sm font-medium leading-relaxed text-[var(--color-ink)] dark:text-stone-200 sm:p-6">
+        <div className="max-h-[calc(min(92vh,46rem)-3.5rem)] space-y-4 overflow-y-auto p-4 pb-10 text-sm font-medium leading-relaxed text-[var(--color-ink)] dark:text-stone-200 sm:p-6 sm:pb-12">
           <p>
             <span className="font-display font-semibold text-[var(--color-accent)] dark:text-red-300">
               Travel days.
@@ -130,7 +133,7 @@ export function HowItWorksModal({ open, onClose }: HowItWorksModalProps) {
             here (unlike some PR exceptions); crown / public service abroad may,
             when you mark a trip that way and it applies to you.
           </p>
-          <Button type="button" variant="default" className="mt-2" onClick={onClose}>
+          <Button type="button" variant="default" className="mt-2 mb-1 sm:mb-2" onClick={onClose}>
             Got it
           </Button>
         </div>

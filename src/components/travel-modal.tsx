@@ -95,14 +95,19 @@ export function TravelModal({
     isChronologicallyValid(form.departureDate, form.returnDate);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-[color:var(--color-ink)]/50 p-3 sm:items-center sm:p-6">
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center bg-[color:var(--color-ink)]/50 p-3 sm:items-center sm:p-6"
+      role="presentation"
+      onClick={onClose}
+    >
       <div
         ref={dialogRef}
-        className="bento bento--flat w-full max-w-lg overflow-hidden border-[color:var(--color-ink)] shadow-[8px_8px_0_0_var(--color-ink)] dark:shadow-[8px_8px_0_0_rgb(244_240_234/0.35)]"
         role="dialog"
         aria-modal="true"
         aria-labelledby="travel-modal-title"
         tabIndex={-1}
+        className="w-full max-w-lg overflow-hidden rounded-[1.25rem] border-2 border-[color:var(--color-ink)] bg-[var(--color-bento)] shadow-[8px_8px_0_0_var(--color-ink)] dark:border-stone-200 dark:bg-[#1c1917] dark:shadow-[8px_8px_0_0_rgb(244_240_234/0.35)]"
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b-2 border-[color:var(--color-ink)] bg-[var(--color-accent)] px-4 py-3 text-white sm:px-5">
           <div className="flex items-center gap-2">
@@ -121,7 +126,7 @@ export function TravelModal({
           </button>
         </div>
         <form
-          className="space-y-4 p-4 sm:p-5"
+          className="space-y-4 p-4 pb-8 sm:p-5 sm:pb-10"
           onSubmit={(e) => {
             e.preventDefault();
             if (!valid) return;

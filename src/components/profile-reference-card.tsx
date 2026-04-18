@@ -54,7 +54,7 @@ export function ProfileReferenceCard({
   };
 
   return (
-    <Card className="flex h-full flex-col overflow-hidden">
+    <Card className="bento--tilt flex h-full flex-col overflow-hidden">
       <div className="border-b-2 border-[color:var(--color-ink)] bg-[var(--color-accent)] px-5 py-4 text-white sm:px-6">
         <div className="flex items-center gap-2 font-display text-2xl font-bold tracking-tight">
           <UserRound className="h-6 w-6 shrink-0 opacity-95" aria-hidden />

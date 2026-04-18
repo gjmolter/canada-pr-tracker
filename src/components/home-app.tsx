@@ -94,10 +94,10 @@ export function HomeApp() {
           <MapPin className="h-8 w-8 animate-pulse" />
         </div>
         <p className="font-display text-lg font-semibold text-[var(--color-ink)] dark:text-stone-100">
-          Unpacking your sticky notes…
+          Unpacking your data…
         </p>
         <p className="max-w-xs text-sm font-medium text-[var(--color-muted-ink)] dark:text-stone-400">
-          Pulling trips from localStorage. No servers, no side-eye.
+          Pulling stuff from your browser&apos;s storage
         </p>
       </div>
     );
@@ -121,7 +121,7 @@ export function HomeApp() {
       <div className="mx-auto max-w-[min(100%,88rem)] px-3 py-8 pb-36 sm:px-6 lg:px-10 lg:py-10">
         <div className="grid grid-cols-12 gap-6 sm:gap-7 lg:gap-10">
           {/* Hero */}
-          <div className="bento relative col-span-12 overflow-hidden p-6 sm:p-8 lg:col-span-7">
+          <div className="bento bento--tilt relative col-span-12 overflow-hidden p-6 sm:p-8 lg:col-span-7">
             <div className="pointer-events-none absolute -right-8 -top-10 text-[10rem] leading-none opacity-[0.07] dark:opacity-[0.12]">
               🍁
             </div>
@@ -362,7 +362,7 @@ export function HomeApp() {
 
         <Button
           type="button"
-          className="fixed bottom-5 right-5 z-40 h-14 gap-2 rounded-2xl border-2 border-[color:var(--color-ink)] px-6 text-base font-bold shadow-[6px_6px_0_0_var(--color-ink)] sm:bottom-8 sm:right-8 dark:border-stone-100 dark:shadow-[6px_6px_0_0_rgb(244_240_234/0.5)]"
+          className="fixed bottom-5 right-5 z-40 h-14 gap-2 rounded-2xl border-2 border-[color:var(--color-ink)] px-6 text-base font-bold shadow-[6px_6px_0_0_var(--color-ink)] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_var(--color-ink)] active:translate-y-[4px] active:shadow-[2px_2px_0_0_var(--color-ink)] sm:bottom-8 sm:right-8 dark:border-stone-100 dark:shadow-[6px_6px_0_0_rgb(244_240_234/0.5)] dark:hover:shadow-[3px_3px_0_0_rgb(244_240_234/0.5)] dark:active:shadow-[2px_2px_0_0_rgb(244_240_234/0.5)]"
           onClick={() => {
             setEditing(null);
             setModalOpen(true);
