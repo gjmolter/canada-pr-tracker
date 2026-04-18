@@ -103,10 +103,10 @@ export function HomeApp() {
               href="https://github.com/gjmolter/canada-pr-tracker"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-(--color-muted-ink) transition-colors hover:text-(--color-ink) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent dark:text-stone-400 dark:hover:text-stone-100 dark:focus-visible:ring-stone-200"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-(--color-ink) transition-colors hover:text-(--color-accent) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent dark:text-stone-400 dark:hover:text-stone-100 dark:focus-visible:ring-stone-200"
               aria-label="View source on GitHub"
             >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+              <svg className="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
