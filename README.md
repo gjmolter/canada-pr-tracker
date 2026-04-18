@@ -2,6 +2,8 @@
 
 A tiny **Next.js** app that helps you sketch and plan your **PR maintenance** (730 days in rolling 1825-day windows) and **citizenship physical presence** (1095 days, with half credit for eligible pre-PR time in Canada, capped at 365). You add your important dates and trips; the app does the counting.
 
+![A screenshot of the app's interface](public/screenshot.png)
+
 ## Run it locally
 
 ```bash
