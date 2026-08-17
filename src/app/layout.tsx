@@ -114,9 +114,9 @@ export default function RootLayout({
       <body className={`${dmSans.variable} ${bricolage.variable} canvas-pattern min-h-screen antialiased`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Script
-          src="https://nosy.cpbr.digital/script.js"
+          src="https://nosy.cpbr.digital/api/script.js"
           strategy="afterInteractive"
-          data-website-id="5f92287a-5f6e-4181-b39d-1f1597bc9a8d"
+          data-site-id="73524df1db5b"
         />
         <Providers>{children}</Providers>
       </body>
